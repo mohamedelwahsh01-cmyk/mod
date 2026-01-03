@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موقع خاص</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+    }
+    .login, .content {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .login {
+      display: flex;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      background: #111;
+      color: white;
+      border: 1px solid #444;
+    }
+    .gallery img {
+      width: 200px;
+      margin: 10px;
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>  <div class="login" id="login">
+    <h2>دخول الموقع</h2>
+    <input type="password" id="password" placeholder="ادخل الباسورد" />
+    <button onclick="checkPassword()">دخول</button>
+    <p id="error" style="color:red"></p>
+  </div>  <div class="content" id="content">
+    <h1>أهلاً بيك 🔒</h1>
+    <p>ده الجزء الداخلي من الموقع</p><input type="file" accept="image/*" multiple onchange="loadImages(event)" />
+<div class="gallery" id="gallery"></div>
+
+  </div>  <script>
+    function checkPassword() {
+      const pass = document.getElementById('password').value;
+      if (pass === '0000') {
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('content').style.display = 'flex';
+      } else {
+        document.getElementById('error').innerText = 'باسورد غلط';
+      }
+    }
+
+    function loadImages(event) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      for (let file of event.target.files) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        gallery.appendChild(img);
+      }
+    }
+  </script></body>
+</html>
